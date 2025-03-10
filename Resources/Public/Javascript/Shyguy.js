@@ -27,9 +27,9 @@ class InsertSoftHyphenHandler {
 
     let activeElement = document.activeElement;
     const domEditableElement = document.querySelector(".ck-editor__editable_inline");
-    const editorInstance = domEditableElement.ckeditorInstance;
+    const editorInstance = domEditableElement ? domEditableElement.ckeditorInstance : null;
 
-    if (editorInstance.editing.view.document.isFocused === true) {
+    if (editorInstance && editorInstance.editing.view.document.isFocused === true) {
       editorInstance.execute("insertText", { text: "­" });
       editorInstance.editing.view.focus();
     } else if (activeElement.tagName.toLowerCase() === "input" || activeElement.tagName.toLowerCase() === "textarea") {
